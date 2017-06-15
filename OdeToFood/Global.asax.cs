@@ -6,6 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebMatrix.WebData;
+using OdeToFood.Controllers;
+using OdeToFood.Migrations;
 
 namespace OdeToFood
 {
@@ -14,8 +17,10 @@ namespace OdeToFood
 
     public class MvcApplication : System.Web.HttpApplication
     {
+
         protected void Application_Start()
         {
+            HomeController.SeedMembership();
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

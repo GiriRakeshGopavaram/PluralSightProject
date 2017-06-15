@@ -85,3 +85,7 @@ c:\users\rakesh\documents\visual studio 2012\Projects\OdeToFood\OdeToFood\obj\De
 c:\users\rakesh\documents\visual studio 2012\Projects\OdeToFood\OdeToFood\obj\Debug\OdeToFood.pdb
 C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood\obj\Debug\OdeToFood.Migrations.InitialCreate.resources
 C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood\obj\Debug\OdeToFood.csproj.GenerateResource.Cache
+C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood\bin\PagedList.dll
+C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood\bin\PagedList.Mvc.dll
+C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood\bin\PagedList.xml
+C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood\bin\PagedList.Mvc.xml

@@ -6,17 +6,54 @@ using System.Web.Mvc;
 using OdeToFood.Models;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using PagedList;
+using WebMatrix.WebData;
+using System.Web.Security;
 
 namespace OdeToFood.Controllers
 {
+    
     public class HomeController : Controller
     {
-        OdeToFoodDb _db = new OdeToFoodDb(); 
-        public ActionResult Index(string searchTerm = null)
+        public static void SeedMembership()
+        {
+            WebSecurity.InitializeDatabaseConnection("OdeToFoodDb", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            var roles = (SimpleRoleProvider)Roles.Provider;
+            var membership = (SimpleMembershipProvider)Membership.Provider;
+
+            if (!roles.RoleExists("Admin"))
+            {
+                roles.CreateRole("Admin");
+            }
+            if (membership.GetUser("Rakesh", false) == null)
+            {
+                membership.CreateUserAndAccount("Rakesh", "rakesh");
+            }
+            if (!roles.GetRolesForUser("Rakesh").Contains("Admin")) 
+            {
+                roles.AddUsersToRoles(new[] { "Rakesh" }, new[] { "admin" });
+            }
+        }
+
+        OdeToFoodDb _db = new OdeToFoodDb();
+
+        public ActionResult Autocomplete(string term) {
+            var model =
+                _db.Restaurants
+                .Where(r => r.Name.StartsWith(term))
+                .Take(10)
+                .Select(r => new
+                {
+                    label = r.Name
+                });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+        [OutputCache(CacheProfile="Long", VaryByHeader="X-Requested-With", Location= System.Web.UI.OutputCacheLocation.Server)]
+        public ActionResult Index(string searchTerm = null,int page = 1)
         {
             var model = _db.Restaurants.OrderByDescending(r => r.Reviews.Average(review => review.Rating))
                 .Where(r => searchTerm == null || r.Name.StartsWith(searchTerm))
-                .Take(10)                       
+                         
                 .Select(r => new RestaurantListViewModel
                                        {
                                            Id = r.Id,
@@ -24,10 +61,14 @@ namespace OdeToFood.Controllers
                                            City = r.City,
                                            Country = r.Country,
                                            CountOfReviews = r.Reviews.Count()
-                                       });
+                                       }).ToPagedList(page,10);
+            if (Request.IsAjaxRequest()) {
+                return PartialView("_Restaurants", model);
+            }
             return View(model);
         }
 
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

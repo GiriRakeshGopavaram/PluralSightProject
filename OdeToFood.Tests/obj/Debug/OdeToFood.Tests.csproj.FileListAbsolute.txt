@@ -80,3 +80,5 @@ c:\users\rakesh\documents\visual studio 2012\Projects\OdeToFood\OdeToFood.Tests\
 c:\users\rakesh\documents\visual studio 2012\Projects\OdeToFood\OdeToFood.Tests\obj\Debug\OdeToFood.Tests.csprojResolveAssemblyReference.cache
 c:\users\rakesh\documents\visual studio 2012\Projects\OdeToFood\OdeToFood.Tests\obj\Debug\OdeToFood.Tests.dll
 c:\users\rakesh\documents\visual studio 2012\Projects\OdeToFood\OdeToFood.Tests\obj\Debug\OdeToFood.Tests.pdb
+C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood.Tests\bin\Debug\PagedList.dll
+C:\Users\Rakesh\Documents\Visual Studio 2012\Projects\OdeToFood\OdeToFood.Tests\bin\Debug\PagedList.xml

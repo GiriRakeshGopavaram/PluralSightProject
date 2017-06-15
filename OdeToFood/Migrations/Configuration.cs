@@ -1,14 +1,17 @@
 namespace OdeToFood.Migrations
 {
+    using OdeToFood.Controllers;
     using OdeToFood.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using WebMatrix.WebData;
 
     internal sealed class Configuration : DbMigrationsConfiguration<OdeToFood.Models.OdeToFoodDb>
     {
+        
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -35,6 +38,14 @@ namespace OdeToFood.Migrations
                       new RestaurantReview{Rating=9,Body="Great Food, Good Service", ReviewerName="Rakesh Gopavaram"}
                   }
               });
+
+            for (int i = 0; i < 1000; i++)
+            {
+                context.Restaurants.AddOrUpdate(r => r.Name,
+                    new Restaurant { Name = i.ToString(), City = "Somewhere", Country = "USA" });
+            }
+            HomeController.SeedMembership();
         }
+        
     }
 }
